@@ -134,9 +134,9 @@ The MCP server binds C1, C3 and C4 directly. It reads C5 through the Patient 360
 - **GLM parts.** GLM writes the review text (for lines tagged with confidence below 0.3) and the coaching cue. Both are cached in KV for 7 days.
 - **Validation:**
   - "Coach move tags: 93.1% correct (12 labels, 1,085 calls)".
-  - "Urgent lines caught: 13 / 13, with 9 false alarms in 25,785 lines".
+  - "Urgent lines caught: 13 / 13". After the distress definition was widened to suicide warning signs, false alarms are 244 in 25,785 lines (9 before), and every distress flag carries "Use your suicide-risk screening protocol now."
   - The call score agrees with supervisors at r = 0.75 and 0.70. Two supervisors agree with each other at 0.69.
-  - On independent hard cases it catches 131/162 urgent lines and 28/54 suicide warning signs.
+  - On an independent hard-case set written and committed before its run (v4), it catches 139/162 urgent lines and 44/54 suicide warning signs (25/54 before the widening).
   - Haitian Creole is tested on the safety flag only. ([README](../modules/coach-copilot/README.md))
 - **Endpoints:** `/api/c5/survivors`, `/api/c5/survivors/:id` (e.g. `c5-P0002`), `/api/c5/calls`, `/api/c5/calls/:callId`, `/api/c5/demo`, `/api/c5/agreement`, `POST /api/c5/turn`. A 429 carries `retry-after: 20`.
 - **Fields P360 reads:**
