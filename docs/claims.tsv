@@ -1,0 +1,41 @@
+# module	file	literal that must appear in that file on the module's main
+c1-acute-risk	README.md	**0.711**
+c1-acute-risk	README.md	| AUROC | **0.711** | 0.672 |
+c1-acute-risk	README.md	| Log loss (lower = better) | **0.539** | 0.606 |
+c1-acute-risk	README.md	| 0.45 [0.25, 0.69] | 1.09 | **1.10**
+c1-acute-risk	README.md	(2.1×)
+c1-acute-risk	README.md	AUROC 0.48 [0.25, 0.70], n = 47
+c1-acute-risk	README.md	observed/expected 1.15
+c1-acute-risk	README.md	alert is 43% or more (top fifth; 57% had acute care
+c1-acute-risk	README.md	466 development survivors
+c3-rough-patch	README.md	Patches caught early: 48% vs 36%
+c3-rough-patch	README.md	ER/admissions caught early: 36% vs 22%
+c3-rough-patch	README.md	| Urgent head (wearable + schedule) | 47% | 4 d | 7.4% |
+c3-rough-patch	README.md	| Urgent head, schedule only | 36% |
+c3-rough-patch	README.md	The base rate is 1.2% of days
+c3-rough-patch	README.md	AUC 0.482
+c3-rough-patch	README.md	Haitian Creole speakers (22% vs 31% Spanish), breast cancer (21%) and sarcoma (13%), and for Black patients (26% vs 29% Hispanic)
+c3-rough-patch	README.md	top decile 19% predicted vs 19% observed
+c3-rough-patch	README.md	750 patients
+c3-rough-patch	README.md	**5% of quiet days**
+c4-glucose-guide	README.md	**18.3 mg/dL lower** (16.6 to 20.1)
+c4-glucose-guide	README.md	**+9.2 mg/dL** (7.1 to 11.3)
+c4-glucose-guide	README.md	-0.03 points overall (-0.06 to 0.00)
+c4-glucose-guide	README.md	−0.35, −1.38 to 0.68
+c4-glucose-guide	README.md	E-value is 3.9
+c4-glucose-guide	README.md	walk after a meal -3.2 (-6.9 to 0.5)
+c4-glucose-guide	README.md	late dinner +2.6 (-5.1 to 10.3)
+c4-glucose-guide	README.md	Holm-adjusted p = 0.13
+c4-glucose-guide	README.md	500 sensor wearers
+c4-glucose-guide	ROBUSTNESS.md	about 730 for the real size
+coach-copilot	README.md	**93.1%**
+coach-copilot	README.md	**90.9%**
+coach-copilot	README.md	**13/13 caught, 9 false alarms / 25,785 lines**
+coach-copilot	README.md	1,085 calls
+coach-copilot	README.md	8/8
+coach-copilot	README.md	75.0%
+coach-copilot	README.md	83.9%
+coach-copilot	README.md	91.1%
+coach-copilot	README.md	65/600
+challenge-mcp	runs/latest.md	67/67 checks passed
+c3-rough-patch	README.md	Alert precision: 18% vs 11%
