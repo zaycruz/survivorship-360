@@ -9,10 +9,8 @@ c1-acute-risk	README.md	observed/expected 1.15
 c1-acute-risk	README.md	alert is 43% or more (top fifth; 57% had acute care
 c1-acute-risk	README.md	466 development survivors
 c3-rough-patch	README.md	Patches caught early: 48% vs 36%
-c3-rough-patch	README.md	ER/admissions caught early: 36% vs 22%
+c3-rough-patch	README.md	47% vs 36% of ER visits caught 2–7 days early
 c3-rough-patch	README.md	| Urgent head (wearable + schedule) | 47% | 4 d | 7.4% |
-c3-rough-patch	README.md	| Urgent head, schedule only | 36% |
-c3-rough-patch	README.md	The base rate is 1.2% of days
 c3-rough-patch	README.md	AUC 0.482
 c3-rough-patch	README.md	Only sarcoma is clearly below the overall 28% (13%, CI 0–26%)
 c3-rough-patch	README.md	top decile 19% predicted vs 19% observed
@@ -41,5 +39,6 @@ coach-copilot	README.md	It answered only 65 of 600
 coach-copilot	README.md	**App score vs mean of supervisors A and B** | **0.789**
 coach-copilot	README.md	| Supervisor A vs supervisor B | 0.692
 coach-copilot	README.md	477 validation calls
-challenge-mcp	runs/latest.md	78/78 checks passed
+challenge-mcp	runs/latest.md	87/87 checks passed
 c3-rough-patch	README.md	Alert precision: 18% vs 11%
+c3-rough-patch	README.md	the base rate is 1.2% of days, so an urgent flag carries about 6x the usual risk
