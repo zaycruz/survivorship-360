@@ -41,5 +41,5 @@ coach-copilot	README.md	It answered only 47 of 600
 coach-copilot	README.md	**App score vs mean of supervisors A and B** | **0.789**
 coach-copilot	README.md	| Supervisor A vs supervisor B | 0.692
 coach-copilot	README.md	477 validation calls
-challenge-mcp	runs/latest.md	67/67 checks passed
+challenge-mcp	runs/latest.md	78/78 checks passed
 c3-rough-patch	README.md	Alert precision: 18% vs 11%

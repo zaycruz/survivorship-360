@@ -31,7 +31,7 @@ Every number in the product traces to a validation run in its module's repo: hel
 | C3 Bad Week Radar | C3 wearables | Forecasts rough patches 2–7 days early from wearables, lagged check-ins and the treatment calendar; urgent ER/admission tier with a "call today" action | Held out, 5% alert budget: 48% of patches caught early vs 36% calendar-only; ER/admissions 36% vs 22% | [`c3-rough-patch`](modules/c3-rough-patch) |
 | C4 Glucose Guide | C4 dose & timing | Double ML, within person: evening walks, late dinners and overnight fasting vs blood sugar; personal advice only when the person's own data supports it | Evening walk −18.3 mg/dL after dinner (CI 16.6–20.1); each claim tagged with a real-data check | [`c4-glucose-guide`](modules/c4-glucose-guide) |
 | C5 Coach's Co-pilot | C5 coaching conversations | Tags every call line with an MI code in ~0.4 s (Cloudflare Clef), live fidelity score, safety banners, GLM coaching cues | Held out: 93.1% coach moves, 90.9% participant talk on 1,085 calls; 13/13 urgent lines caught; call score vs supervisors r 0.79 (supervisors vs each other r 0.69) | [`coach-copilot`](modules/coach-copilot) |
-| Challenge MCP | all | 12 read-only tools over every module for ChatGPT and Claude, incl. "score this conversation" | E2E 67/67 with the official MCP client | [`challenge-mcp`](modules/challenge-mcp) |
+| Challenge MCP | all | 12 read-only tools over every module for ChatGPT and Claude, incl. "score this conversation" | E2E 78/78 with the official MCP client | [`challenge-mcp`](modules/challenge-mcp) |
 
 Who owns what: the challenge modules are engines and APIs only (model, data pipeline, validation, `CONTRACT.md`). Patient 360 owns everything users see.
 
