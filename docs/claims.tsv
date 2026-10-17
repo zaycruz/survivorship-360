@@ -29,7 +29,7 @@ c4-glucose-guide	ROBUSTNESS.md	about 730 for the real size
 coach-copilot	README.md	**93.1%**
 coach-copilot	README.md	**90.9%**
 coach-copilot	README.md	**13/13** (10 medical, 2 social, 1 distress)
-coach-copilot	README.md	**9 / 25,785**
+coach-copilot	README.md	**244 / 25,785**
 coach-copilot	README.md	1,085 calls
 coach-copilot	README.md	8/8
 coach-copilot	README.md	75.0%
@@ -44,3 +44,4 @@ c3-rough-patch	README.md	Alert precision: 18% vs 11%
 c3-rough-patch	README.md	the base rate is 1.2% of days, so an urgent flag carries about 6x the usual risk
 c3-rough-patch	README.md	urgent tier + escalation catches 61% vs 47% of ER visits 2–7 days early (95% CI +9 to +19 points over patients)
 c3-rough-patch	README.md	Patches caught early: 44% vs 36% for the calendar. The 95% CI is -1 to +17 points
+coach-copilot	README.md	suicide risk **44 / 54**
