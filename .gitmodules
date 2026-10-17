@@ -1,0 +1,18 @@
+[submodule "modules/coach-console"]
+	path = modules/coach-console
+	url = https://github.com/zaycruz/coach-console.git
+[submodule "modules/c1-acute-risk"]
+	path = modules/c1-acute-risk
+	url = https://github.com/zaycruz/c1-acute-risk.git
+[submodule "modules/c3-rough-patch"]
+	path = modules/c3-rough-patch
+	url = https://github.com/zaycruz/c3-rough-patch.git
+[submodule "modules/c4-glucose-guide"]
+	path = modules/c4-glucose-guide
+	url = https://github.com/zaycruz/c4-glucose-guide.git
+[submodule "modules/coach-copilot"]
+	path = modules/coach-copilot
+	url = https://github.com/zaycruz/coach-copilot.git
+[submodule "modules/challenge-mcp"]
+	path = modules/challenge-mcp
+	url = https://github.com/zaycruz/challenge-mcp.git
