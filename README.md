@@ -44,6 +44,10 @@ Who owns what: the challenge modules are engines and APIs only (model, data pipe
 
 Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.md` in each repo). Patient 360 and the MCP server consume only those contracts. Patient 360 falls back to a saved snapshot when a module is down.
 
+**Patient 360 inside:** the browser files, every `/api/*` route of its Worker, the service bindings to C1, C3, C4 and C5, KV, the edge cache and the snapshot fallback, each box checked against `modules/coach-console`.
+
+![Patient 360 architecture](docs/arch-p360.png)
+
 ## For presenters
 
 Four one-look diagrams for judges' questions, made in Paper. Every box is checked against the code; every number comes from a module README or `docs/claims.tsv`.
