@@ -36,7 +36,7 @@ coach-copilot	README.md	75.0%
 coach-copilot	README.md	83.9%
 coach-copilot	README.md	91.1%
 coach-copilot	README.md	It answered only 65 of 600
-coach-copilot	README.md	**App score vs mean of supervisors A and B** | **0.789**
+coach-copilot	README.md	r = 0.75 with supervisor A and 0.70 with supervisor B
 coach-copilot	README.md	| Supervisor A vs supervisor B | 0.692
 coach-copilot	README.md	477 validation calls
 challenge-mcp	runs/latest.md	87/87 checks passed
