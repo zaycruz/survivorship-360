@@ -44,8 +44,8 @@ PASS   slide 10: full-bleed image
 PASS   slide 10: notes (493 chars)
 PASS   slide 11: full-bleed image
 PASS   slide 11: notes (343 chars)
-PASS deck.pdf exists (837557 bytes)
-PASS survivorship-360-pitch.pdf exists (837557 bytes)
+PASS deck.pdf exists (839515 bytes)
+PASS survivorship-360-pitch.pdf exists (839515 bytes)
 PASS slides/: 11 PNGs
 Numbers traced to module docs (read now):
 PASS   survivorship-360/README.md: '12 read-only tools'
