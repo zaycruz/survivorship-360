@@ -8,7 +8,7 @@ Patient 360 (https://patient-360.raava.dev) is one clinician record across four 
 
 Each program is its own repo and Cloudflare Worker with its own API. Patient 360 calls those APIs, puts one ranked queue on top, and adds AI Insight and an AI assistant. The MCP server is a second consumer of the same APIs.
 
-Paths in this doc are relative to `survivorship-360/docs/`. Every endpoint listed here returned 200 from a live curl against `https://patient-360.raava.dev` on 2026-10-17 (production version `19a1e4e1`).
+Paths in this doc are relative to `survivorship-360/docs/`. Every endpoint listed here returned 200 from a live curl against `https://patient-360.raava.dev` on 2026-10-17 (production version `7f68c818`).
 
 ## The data path
 
@@ -129,7 +129,7 @@ The MCP server binds C1, C3 and C4 directly. It reads C5 through the Patient 360
 
 ### C5 coaching calls ([`../modules/coach-copilot`](../modules/coach-copilot/README.md), Worker `coach-copilot-clef`)
 
-- **Tagging (Clef, `@cf/cloudflare/clef`).** Each line gets one of 12 motivational-interviewing labels (change, sustain or neutral talk). Lines can also be flagged: medical, distress, social, dropout, missed concern, medical advice.
+- **Tagging (Clef, `@cf/cloudflare/clef`).** A coach line gets one of 12 motivational-interviewing coach moves; a participant line gets change, sustain or neutral talk. Lines can also be flagged: medical, distress, social, dropout, missed concern, medical advice.
 - **Deterministic parts.** The call score (`scripts/score.py`; `scoreParts` in `src/c5.ts`), the cue triggers, and the red-flag phrase list `src/redflags.json` (English, Spanish, Kreyòl).
 - **GLM parts.** GLM writes the review text (for lines tagged with confidence below 0.3) and the coaching cue. Both are cached in KV for 7 days.
 - **Validation:**
@@ -148,13 +148,13 @@ The MCP server binds C1, C3 and C4 directly. It reads C5 through the Patient 360
 
 ### MCP server ([`../modules/challenge-mcp`](../modules/challenge-mcp/README.md))
 
-- **Where it runs.** `https://emerge-mcp.raava.dev/mcp`. `/health` returns version 0.4.3.
+- **Where it runs.** `https://emerge-mcp.raava.dev/mcp`. `/health` returns version 0.4.4.
 - **12 default tools** (plus `reveal_outcome_demo`, only on `?tools=demo`): `triage_today`, `list_survivors`, `get_survivor`, `patient_overview`, `module_metrics`, `glucose_advice`, `list_coaching_calls`, `get_coaching_call`, `score_conversation`, `coaching_cue`, `search`, `fetch`.
 - **Which tools call a model:**
   - `score_conversation` uses Clef, through C5 `/api/turn`.
   - `coaching_cue` uses GLM, with a rule fallback.
   - `glucose_advice` uses Llama through C4, only when there is no precomputed wording.
-- **Auth.** Open by design. An optional `MCP_KEYS` bearer is supported. Rate limits: 20 requests/min per IP, 60/min per key.
+- **Auth.** Open by design. An optional `MCP_KEYS` bearer is supported. Rate limits apply only to the three tools that call a live model: 20 requests/min per IP, 60/min per key.
 
 ## Field to screen
 
