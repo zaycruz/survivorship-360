@@ -17,7 +17,7 @@ for m in $MODULES; do
 done
 
 echo "== local module work not on GitHub"
-for m in $MODULES patient-app; do
+for m in $MODULES; do
   d="$LOCAL/$m"; [ -d "$d/.git" ] || [ -f "$d/.git" ] || continue
   if ! git -C "$d" remote get-url origin >/dev/null 2>&1; then echo "note   $m has no GitHub remote"; continue; fi
   git -C "$d" fetch -q origin 2>/dev/null

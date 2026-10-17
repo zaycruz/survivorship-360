@@ -2,7 +2,7 @@
 
 eMerge Hackathon · Sylvester Comprehensive Cancer Center healthcare track · built in one day, everything custom.
 
-**Survivorship 360 gives a cancer-survivorship care team one place to see who needs them today, and why.** It joins four AI modules, one per challenge, into a single clinician console with a chat assistant. A patient-facing iOS app and an MCP server give the same data to survivors and to any AI assistant.
+**Survivorship 360 gives a cancer-survivorship care team one place to see who needs them today, and why.** It joins four AI modules, one per challenge, into a single clinician console with a chat assistant. An MCP server gives the same data to any AI assistant, such as ChatGPT or Claude.
 
 - **Who needs a call today.** A wearable model warns of a rough week 2–7 days ahead. A separate urgent tier flags a likely ER visit or admission.
 - **Who is at risk of acute care.** A calibrated risk model whose probabilities can be trusted at face value.
@@ -21,7 +21,6 @@ Every number in the product traces to a validation run in its module's repo: hel
 | C4 Glucose Guide | https://c4-glucose-guide.zay-259.workers.dev |
 | C5 Coach's Co-pilot | https://coach.raava.dev |
 | MCP server (ChatGPT / Claude) | `https://emerge-mcp.raava.dev/mcp` |
-| iOS patient app | not yet on TestFlight (waiting on the App Store Connect app record) |
 
 ## Modules
 
@@ -33,7 +32,6 @@ Every number in the product traces to a validation run in its module's repo: hel
 | C4 Glucose Guide | C4 dose & timing | Double ML, within person: evening walks, late dinners and overnight fasting vs blood sugar; personal advice only when the person's own data supports it | Evening walk −18.3 mg/dL after dinner (CI 16.6–20.1); each claim tagged with a real-data check | [`c4-glucose-guide`](modules/c4-glucose-guide) |
 | C5 Coach's Co-pilot | C5 coaching conversations | Tags every call line with an MI code in ~0.4 s (Cloudflare Clef), live fidelity score, safety banners, GLM coaching cues | Held out: 93.1% coach moves, 90.9% participant talk on 1,085 calls; 13/13 urgent lines caught | [`coach-copilot`](modules/coach-copilot) |
 | Challenge MCP | all | 13 read-only tools over every module for ChatGPT and Claude, incl. "score this conversation" | E2E 67/67 with the official MCP client | [`challenge-mcp`](modules/challenge-mcp) |
-| Patient app | all | iOS, the survivor's own view across modules, 5 synthetic personas | Simulator build and E2E run locally; TestFlight waits on the App Store Connect app record | not on GitHub yet |
 
 Who owns what: the challenge modules are engines and APIs only (model, data pipeline, validation, `CONTRACT.md`). Patient 360 owns everything users see.
 
@@ -41,7 +39,7 @@ Who owns what: the challenge modules are engines and APIs only (model, data pipe
 
 ![Survivorship 360 architecture](docs/architecture.png)
 
-Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.md` in each repo). Patient 360, the MCP server and the iOS app consume only those contracts, and fall back to a saved snapshot when a module is down.
+Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.md` in each repo). Patient 360 and the MCP server consume only those contracts. Patient 360 falls back to a saved snapshot when a module is down.
 
 ## How each challenge works
 
