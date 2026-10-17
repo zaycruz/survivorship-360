@@ -266,5 +266,5 @@ Every live C4 flag is currently `"this-week"`.
 
 ## Checks
 
-- **P360 E2E.** `e2e/live.mjs` runs against the deployed site with real module data. The run on production `19a1e4e1` passed 106 of 106 checks: `../modules/coach-console/runs/2026-10-17T18-45-13/manifest.json`.
+- **P360 E2E.** `e2e/live.mjs` runs against the deployed site with real module data. The run on production `f580b0ac` passed 109 of 109 checks: `../modules/coach-console/runs/2026-10-17T19-21-28/manifest.json`.
 - **Module checks.** Each module's README states its validation and how to reproduce it (links above).
