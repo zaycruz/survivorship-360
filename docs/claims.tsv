@@ -30,12 +30,16 @@ c4-glucose-guide	README.md	500 sensor wearers
 c4-glucose-guide	ROBUSTNESS.md	about 730 for the real size
 coach-copilot	README.md	**93.1%**
 coach-copilot	README.md	**90.9%**
-coach-copilot	README.md	**13/13 caught, 9 false alarms / 25,785 lines**
+coach-copilot	README.md	**13/13** (10 medical, 2 social, 1 distress)
+coach-copilot	README.md	**9 / 25,785**
 coach-copilot	README.md	1,085 calls
 coach-copilot	README.md	8/8
 coach-copilot	README.md	75.0%
 coach-copilot	README.md	83.9%
 coach-copilot	README.md	91.1%
-coach-copilot	README.md	65/600
+coach-copilot	README.md	It answered only 47 of 600
+coach-copilot	README.md	**App score vs mean of supervisors A and B** | **0.789**
+coach-copilot	README.md	| Supervisor A vs supervisor B | 0.692
+coach-copilot	README.md	477 validation calls
 challenge-mcp	runs/latest.md	67/67 checks passed
 c3-rough-patch	README.md	Alert precision: 18% vs 11%
