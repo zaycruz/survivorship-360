@@ -42,3 +42,4 @@ coach-copilot	README.md	477 validation calls
 challenge-mcp	runs/latest.md	114/114 checks passed
 c3-rough-patch	README.md	Alert precision: 18% vs 11%
 c3-rough-patch	README.md	the base rate is 1.2% of days, so an urgent flag carries about 6x the usual risk
+c3-rough-patch	README.md	urgent tier + escalation catches 61
