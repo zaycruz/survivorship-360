@@ -8,7 +8,7 @@ Patient 360 (https://patient-360.raava.dev) is one clinician record across four 
 
 Each program is its own repo and Cloudflare Worker with its own API. Patient 360 calls those APIs, puts one ranked queue on top, and adds AI Insight and an AI assistant. The MCP server is a second consumer of the same APIs.
 
-Paths in this doc are relative to `survivorship-360/docs/`. Every endpoint listed here returned 200 from a live curl against `https://patient-360.raava.dev` on 2026-10-17 (production version `7f68c818`).
+Paths in this doc are relative to `survivorship-360/docs/`. Every endpoint listed here returned 200 from a live curl against `https://patient-360.raava.dev` on 2026-10-17 (production version `33e707fd`).
 
 ## The data path
 
@@ -266,5 +266,5 @@ Every live C4 flag is currently `"this-week"`.
 
 ## Checks
 
-- **P360 E2E.** `e2e/live.mjs` runs against the deployed site with real module data. The run on production `7f68c818` passed 114 of 114 checks: `../modules/coach-console/runs/2026-10-17T19-48-10/manifest.json`.
+- **P360 E2E.** `e2e/live.mjs` runs against the deployed site with real module data. The run on production `33e707fd` passed 114 of 114 checks: `../modules/coach-console/runs/2026-10-17T20-21-00/manifest.json`.
 - **Module checks.** Each module's README states its validation and how to reproduce it (links above).
