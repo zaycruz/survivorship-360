@@ -166,16 +166,16 @@ The MCP server binds C1, C3 and C4 directly. It reads C5 through the Patient 360
 
 | Program | Call today (`horizon: "today"`) | This week (`horizon: "week"`) | Rank within tier |
 |---|---|---|---|
-| C5 | The latest call per patient with a flagged line (medical, distress, social), **only if the call is under 30 days old**. The Clef demo call replayed today (`/api/c5/demo` red banner) counts as today. | — (older flags are left out of the queue; the chart says "Close the loop") | medical 960, distress 950, social 900 |
+| C5 | Every coaching call with a medical or distress line, whatever its age. A flag under 30 days old is a hand-off; an older one carries "Close the loop" and ranks 60 lower. The Clef demo call replayed today (`/api/c5/demo` red banner) counts as today. | A social-need line (rank 450) | fresh: medical 960, distress 950; older ("Close the loop"): 900, 890 |
 | C3 | `urgent === true` (or a headline starting "Urgent"): 7-day ER/hospital risk over the urgent line | Other `status: "alert"` rows (rough week ahead) | today 940 + urgentRisk; week 400 + risk |
 | C1 | `redFlags.careTeamToday === true` (survey red flag), whatever the tier | Alert tier, highest next-year risk, top 5 | today 910; week 500 + risk |
 | C4 | `careTeamFlag.urgency === "today"` (more than 1% of readings below 54) | Every other care-team flag or alert. Without `urgency`, all C4 rows are This week. | lows 830 + %below 70; highs 820; others 300 + (100 − TIR) |
 
 Rows sort Call today first, then by rank. `interpreter` is true when the patient's language is not English.
 
-Live on 2026-10-17: 31 rows.
-- Call today 12: C1 9, C3 2, C5 1.
-- This week 19: C4 11, C1 5, C3 3.
+Live on 2026-10-17 (16:10 EDT): 39 rows.
+- Call today 19: C1 9, C5 8, C3 2.
+- This week 20: C4 11, C1 5, C3 3, C5 1.
 
 Every live C4 flag is currently `"this-week"`.
 
@@ -266,5 +266,5 @@ Every live C4 flag is currently `"this-week"`.
 
 ## Checks
 
-- **P360 E2E.** `e2e/live.mjs` runs against the deployed site with real module data. The run on production `f580b0ac` passed 109 of 109 checks: `../modules/coach-console/runs/2026-10-17T19-21-28/manifest.json`.
+- **P360 E2E.** `e2e/live.mjs` runs against the deployed site with real module data. The run on production `7f68c818` passed 114 of 114 checks: `../modules/coach-console/runs/2026-10-17T19-48-10/manifest.json`.
 - **Module checks.** Each module's README states its validation and how to reproduce it (links above).
