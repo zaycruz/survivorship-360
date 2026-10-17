@@ -50,5 +50,16 @@ while IFS=$'\t' read -r m f lit; do
 done < docs/claims.tsv
 rm -rf "$tmp"
 
+echo "== reproducibility files in each module on main"
+for m in c1-acute-risk c3-rough-patch c4-glucose-guide coach-copilot; do
+  files=$(git -C "modules/$m" ls-tree -r --name-only FETCH_HEAD 2>/dev/null)
+  for f in REPRODUCE.md scripts/reproduce.sh; do echo "$files" | grep -qx "$f" && ok "$m has $f" || bad "$m is missing $f"; done
+  echo "$files" | grep -qE '^(uv\.lock|requirements\.txt)$' && ok "$m pins Python deps" || bad "$m has no uv.lock or requirements.txt"
+  echo "$files" | grep -qE '^runs/reproduce-[^/]+\.md$' && ok "$m has a fresh-clone reproduce log" || bad "$m has no runs/reproduce-*.md"
+done
+for m in coach-console challenge-mcp; do
+  git -C "modules/$m" ls-tree -r --name-only FETCH_HEAD 2>/dev/null | grep -qx README.md && ok "$m has README.md" || bad "$m is missing README.md"
+done
+
 [ $fail = 0 ] && echo "README matches reality." || echo "README has drifted; fix it, the diagrams (docs/*.png from Paper) and the pins."
 exit $fail

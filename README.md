@@ -63,6 +63,30 @@ Each panel shows the data, the model, how it was validated, what the user sees, 
 
 Diagrams are made in Paper; the PNGs in `docs/` are exports.
 
+## Where everything is
+
+Every module is a submodule under `modules/`. In each one, `CONTRACT.md` is the API and `README.md` the results; `REPRODUCE.md` (being added) is the path from raw data to every headline number.
+
+| Module | Model and training | Evaluation and research | Tests (E2E against the live Worker) | Served by |
+|---|---|---|---|---|
+| [C1](modules/c1-acute-risk) | `analysis/features.py`, `analysis/train.py`, `analysis/autoresearch.py` (48-candidate model search) | `analysis/baseline_reference.py`, `analysis/explain.py` (TreeSHAP), `analysis/synthea.py`; search log `runs/autoresearch/` | `scripts/e2e.mjs`, `scripts/contract.mjs`, `scripts/page-check.mjs` | `src/index.ts` |
+| [C3](modules/c3-rough-patch) | `analysis/train.py` (rough-patch and urgent models), `analysis/export.py` | `analysis/real_check.py` (real fatigue study), `analysis/exp/`, `analysis/research_log.md`; metrics `analysis/out/` | `scripts/e2e.mjs`, `scripts/contract.mjs`, `scripts/page-check.mjs` | `src/index.ts` |
+| [C4](modules/c4-glucose-guide) | `scripts/ml_effects.py` (double ML, run by `scripts/build-ml.sh`), `scripts/analyze.py` (fixed-effects cross-check) | `scripts/ml_compare.py`, `scripts/pycaret_compare.py`, `scripts/realworld.py` (CGMacros, NHANES); `ML_COMPARISON.md`, `ROBUSTNESS.md` | `scripts/e2e.mjs`, `scripts/contract.py` | `src/index.ts` |
+| [C5](modules/coach-copilot) | `scripts/payload.py` (Clef payload: labels and examples), `src/payload.json` | `scripts/evaluate.py`, `scripts/flag_eval.py`, `scripts/agreement.py` (vs supervisors), `scripts/annomi_bench.py`, `scripts/review_eval.py`, `scripts/glm_bench.py` | `scripts/contract.py` | `src/index.ts` |
+| [Patient 360](modules/coach-console) | — | — | `e2e/live.mjs`; runs in `runs/` | `src/index.ts`, `public/` |
+| [MCP](modules/challenge-mcp) | — | — | `e2e/run.mjs`, `e2e/custom-domain.sh`; summary `runs/latest.md` | `src/index.ts` |
+
+## Reproduce
+
+Judges can rerun every number. Per module:
+
+1. `git clone --recurse-submodules https://github.com/zaycruz/survivorship-360 && cd survivorship-360/modules/<module>`
+2. Put the sponsor data where `REPRODUCE.md` says (paths and sha256 listed there; sponsor data is not committed). Public real-data sets give their download URL and version.
+3. `scripts/reproduce.sh`: data prep → training → evaluation, with fixed seeds and pinned dependencies (`uv run`). It writes the metrics files the README cites.
+4. Compare: `REPRODUCE.md` maps each README number to the file and key it comes from. Each module commits its own fresh-clone proof as `runs/reproduce-<stamp>.md`.
+
+The E2E suites run against the live Workers and need only `npm ci`.
+
 ## Honest limits
 
 - The module cohorts are separate synthetic datasets supplied by the sponsors; they share no patient ids. Cross-module views use composite synthetic personas, labelled as such.
@@ -82,7 +106,7 @@ The coordinator runs it on a schedule and fixes the README, the diagrams and the
 
 ## Repo layout
 
-`modules/` holds each module as a git submodule. Clone with:
+`modules/` holds each module as a git submodule (see [Where everything is](#where-everything-is)). Clone with:
 
 ```sh
 git clone --recurse-submodules <this repo>
