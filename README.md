@@ -70,7 +70,7 @@ Every module is a submodule under `modules/`. In each one, `CONTRACT.md` is the 
 | Module | Model and training | Evaluation and research | Tests (E2E against the live Worker) | Served by |
 |---|---|---|---|---|
 | [C1](modules/c1-acute-risk) | `analysis/features.py`, `analysis/train.py`, `analysis/autoresearch.py` (48-candidate model search) | `analysis/baseline_reference.py`, `analysis/explain.py` (TreeSHAP), `analysis/synthea.py`; search log `runs/autoresearch/` | `scripts/e2e.mjs`, `scripts/contract.mjs`, `scripts/page-check.mjs` | `src/index.ts` |
-| [C3](modules/c3-rough-patch) | `analysis/train.py` (rough-patch and urgent models), `analysis/export.py` | `analysis/real_check.py` (real fatigue study), `analysis/exp/`, `analysis/research_log.md`; metrics `analysis/out/` | `scripts/e2e.mjs`, `scripts/contract.mjs`, `scripts/page-check.mjs` | `src/index.ts` |
+| [C3](modules/c3-rough-patch) | `analysis/train.py` (rough-patch and urgent models), `analysis/export.py` | `analysis/real_check.py` (real fatigue study), `analysis/exp/`, `analysis/research_log.md`; metrics `analysis/out/`; one command `scripts/reproduce.sh` + `scripts/check_numbers.py` (see `REPRODUCE.md`) | `scripts/e2e.mjs`, `scripts/contract.mjs`, `scripts/page-check.mjs` | `src/index.ts` |
 | [C4](modules/c4-glucose-guide) | `scripts/ml_effects.py` (double ML, run by `scripts/build-ml.sh`), `scripts/analyze.py` (fixed-effects cross-check) | `scripts/ml_compare.py`, `scripts/pycaret_compare.py`, `scripts/realworld.py` (CGMacros, NHANES); `ML_COMPARISON.md`, `ROBUSTNESS.md` | `scripts/e2e.mjs`, `scripts/contract.py` | `src/index.ts` |
 | [C5](modules/coach-copilot) | `scripts/payload.py` (Clef payload: labels and examples), `src/payload.json` | `scripts/evaluate.py`, `scripts/flag_eval.py`, `scripts/agreement.py` (vs supervisors), `scripts/annomi_bench.py`, `scripts/review_eval.py`, `scripts/glm_bench.py` | `scripts/contract.py` | `src/index.ts` |
 | [Patient 360](modules/coach-console) | — | — | `e2e/live.mjs`; runs in `runs/` | `src/index.ts`, `public/` |
@@ -93,7 +93,7 @@ The E2E suites run against the live Workers and need only `npm ci`.
 - C1 ranks better than its baseline, but not significantly (AUROC 0.711 vs 0.672); the proven gain is in its probabilities. It ranks NH Black survivors poorly (AUROC 0.48, n = 47), and the panel warns.
 - C3's lead time is shown on synthetic data; in the real fatigue study the wearable does not forecast the next day (AUC 0.482). Only sarcoma is clearly below the overall 28% recall (13%, CI 0–26%); Haitian Creole speakers (22%) and breast cancer (21%) are lower, but too few to be sure.
 - C4's real-data checks point the same way as the synthetic effects but do not prove them; the real walk effect is much smaller (−3.2 mg/dL, CI −6.9 to 0.5).
-- C5 was never tuned on AnnoMI, an outside expert-labelled set: there it agrees 75.0% of the time vs 83.9% expert-to-expert (91–93% where all experts agree). On its own held-out calls it agrees with supervisors better than they agree with each other (r 0.79 vs 0.69).
+- C5 was never tuned on AnnoMI, an outside expert-labelled set: there it agrees 75.0% of the time vs 83.9% expert-to-expert (91–93% where all experts agree). On its own held-out calls its call score tracks the supervisors' mean at r 0.79, about as well as the two supervisors track each other (r 0.69).
 
 ## Keeping this README true
 
