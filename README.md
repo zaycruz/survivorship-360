@@ -15,7 +15,7 @@ Every number in the product traces to a validation run in its module's repo: hel
 
 | What | Live |
 |---|---|
-| **Patient 360**: clinician console + Ellie assistant | https://patient-360.raava.dev |
+| **Patient 360**: clinician console + AI assistant | https://patient-360.raava.dev |
 | C1 Care-team risk | https://c1-acute-risk.zay-259.workers.dev |
 | C3 Bad Week Radar | https://c3-rough-patch.zay-259.workers.dev |
 | C4 Glucose Guide | https://c4-glucose-guide.zay-259.workers.dev |
@@ -26,7 +26,7 @@ Every number in the product traces to a validation run in its module's repo: hel
 
 | Module | Challenge | What it does | Headline result | Repo |
 |---|---|---|---|---|
-| Patient 360 | all | Clinician console: Today list, patients, per-patient 360 view, live coaching calls with recap, Ellie chat assistant. Owns the whole application layer. | Latest E2E against the deployed site: 81/83 (fails: a Workers AI rate limit in Ellie, one 502) | [`coach-console`](modules/coach-console) |
+| Patient 360 | all | Clinician console: Today list, patients, per-patient 360 view, live coaching calls with recap, AI assistant. Owns the whole application layer. | Latest E2E against the deployed site: 81/83 (fails: a Workers AI rate limit in the AI assistant, one 502) | [`coach-console`](modules/coach-console) |
 | C1 Care-team risk | C1 acute-care risk | Calibrated random forest on MEPS survivors, picked from 48 candidates; risk tiers, per-survivor drivers, fairness flags, red flags for the care team today | Out-of-fold: log loss 0.539 vs 0.606 baseline (significant); calibration slope 1.10 vs 0.45; AUROC 0.711 vs 0.672 (not significant) | [`c1-acute-risk`](modules/c1-acute-risk) |
 | C3 Bad Week Radar | C3 wearables | Forecasts rough patches 2–7 days early from wearables, lagged check-ins and the treatment calendar; urgent ER/admission tier with a "call today" action | Held out, 5% alert budget: 48% of patches caught early vs 36% calendar-only; ER/admissions 47% vs 36% (urgent tier vs calendar-only ER model, CI +2 to +19) | [`c3-rough-patch`](modules/c3-rough-patch) |
 | C4 Glucose Guide | C4 dose & timing | Double ML, within person: evening walks, late dinners and overnight fasting vs blood sugar; personal advice only when the person's own data supports it | Evening walk −18.3 mg/dL after dinner in the program (CI 16.6–20.1; real adults about −3, not proven); each claim tagged with a real-data check | [`c4-glucose-guide`](modules/c4-glucose-guide) |
