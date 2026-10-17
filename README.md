@@ -46,7 +46,7 @@ Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.m
 
 ## For presenters
 
-Three one-look diagrams for judges' questions. Every box is checked against the code; every number comes from a module README or `docs/claims.tsv`.
+Four one-look diagrams for judges' questions, made in Paper. Every box is checked against the code; every number comes from a module README or `docs/claims.tsv`.
 
 - **Clef at runtime:** what happens to one spoken line of a call, with live timings, and which steps are AI and which are rules.
 
@@ -57,6 +57,9 @@ Three one-look diagrams for judges' questions. Every box is checked against the 
 - **The forecasts:** what we forecast, how far ahead, and what the care team does on the Today list.
 
   ![The forecasts](docs/forecasts.png)
+- **Every model, AI and ML:** every model call in the system, where it runs, its input and output, the screen that shows it, whether it is validated or writes words only, and what happens when it fails.
+
+  ![Every model, AI and ML](docs/ai-ml-map.png)
 
 ## How each challenge works
 
