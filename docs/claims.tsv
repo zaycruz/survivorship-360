@@ -14,7 +14,7 @@ c3-rough-patch	README.md	| Urgent head (wearable + schedule) | 47% | 4 d | 7.4% 
 c3-rough-patch	README.md	| Urgent head, schedule only | 36% |
 c3-rough-patch	README.md	The base rate is 1.2% of days
 c3-rough-patch	README.md	AUC 0.482
-c3-rough-patch	README.md	Haitian Creole speakers (22% vs 31% Spanish), breast cancer (21%) and sarcoma (13%), and for Black patients (26% vs 29% Hispanic)
+c3-rough-patch	README.md	Only sarcoma is clearly below the overall 28% (13%, CI 0–26%)
 c3-rough-patch	README.md	top decile 19% predicted vs 19% observed
 c3-rough-patch	README.md	750 patients
 c3-rough-patch	README.md	**5% of quiet days**

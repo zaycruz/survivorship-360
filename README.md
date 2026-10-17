@@ -31,7 +31,7 @@ Every number in the product traces to a validation run in its module's repo: hel
 | C3 Bad Week Radar | C3 wearables | Forecasts rough patches 2–7 days early from wearables, lagged check-ins and the treatment calendar; urgent ER/admission tier with a "call today" action | Held out, 5% alert budget: 48% of patches caught early vs 36% calendar-only; ER/admissions 36% vs 22% | [`c3-rough-patch`](modules/c3-rough-patch) |
 | C4 Glucose Guide | C4 dose & timing | Double ML, within person: evening walks, late dinners and overnight fasting vs blood sugar; personal advice only when the person's own data supports it | Evening walk −18.3 mg/dL after dinner (CI 16.6–20.1); each claim tagged with a real-data check | [`c4-glucose-guide`](modules/c4-glucose-guide) |
 | C5 Coach's Co-pilot | C5 coaching conversations | Tags every call line with an MI code in ~0.4 s (Cloudflare Clef), live fidelity score, safety banners, GLM coaching cues | Held out: 93.1% coach moves, 90.9% participant talk on 1,085 calls; 13/13 urgent lines caught; call score vs supervisors r 0.79 (supervisors vs each other r 0.69) | [`coach-copilot`](modules/coach-copilot) |
-| Challenge MCP | all | 13 read-only tools over every module for ChatGPT and Claude, incl. "score this conversation" | E2E 67/67 with the official MCP client | [`challenge-mcp`](modules/challenge-mcp) |
+| Challenge MCP | all | 12 read-only tools over every module for ChatGPT and Claude, incl. "score this conversation" | E2E 67/67 with the official MCP client | [`challenge-mcp`](modules/challenge-mcp) |
 
 Who owns what: the challenge modules are engines and APIs only (model, data pipeline, validation, `CONTRACT.md`). Patient 360 owns everything users see.
 
@@ -91,7 +91,7 @@ The E2E suites run against the live Workers and need only `npm ci`.
 
 - The module cohorts are separate synthetic datasets supplied by the sponsors; they share no patient ids. Cross-module views use composite synthetic personas, labelled as such.
 - C1 ranks better than its baseline, but not significantly (AUROC 0.711 vs 0.672); the proven gain is in its probabilities. It ranks NH Black survivors poorly (AUROC 0.48, n = 47), and the panel warns.
-- C3's lead time is shown on synthetic data; in the real fatigue study the wearable does not forecast the next day (AUC 0.482). Recall is lower for Haitian Creole speakers (22% vs 31% Spanish), breast cancer (21%), sarcoma (13%) and Black patients (26% vs 29%).
+- C3's lead time is shown on synthetic data; in the real fatigue study the wearable does not forecast the next day (AUC 0.482). Only sarcoma is clearly below the overall 28% recall (13%, CI 0–26%); Haitian Creole speakers (22%) and breast cancer (21%) are lower, but too few to be sure.
 - C4's real-data checks point the same way as the synthetic effects but do not prove them; the real walk effect is much smaller (−3.2 mg/dL, CI −6.9 to 0.5).
 - C5 agrees with AnnoMI experts 75.0% of the time vs 83.9% expert-to-expert agreement (91–93% where all experts agree).
 
