@@ -127,6 +127,8 @@ The E2E suites run against the live Workers and need only `npm ci`.
 - C4's real-data checks point the same way as the synthetic effects but do not prove them; the real walk effect is much smaller (−3.2 mg/dL, CI −6.9 to 0.5).
 - C5's suicide-risk flag still misses about 1 in 5 indirect warning signs and raises a false alarm in about 1 call in 5, so every distress flag tells the coach to use their suicide-risk screening protocol now. C5 was never tuned on AnnoMI, an outside expert-labelled set: there it agrees 75.0% of the time vs 83.9% expert-to-expert (91–93% where all experts agree). On its own held-out calls the app's coach score agrees with each supervisor about as well as they agree with each other (r 0.75 with A, 0.70 with B, vs 0.69 between A and B). Haitian Creole is tested only on the safety flag; tags and scores are not validated in Creole.
 
+If this went into production, what we would do differently (data, privacy, access, validation, safety, fairness, model and AI operations, reliability, regulatory, workflow): [docs/production.md](docs/production.md).
+
 ## Keeping this README true
 
 `scripts/check-drift.sh` fails when this README no longer matches reality:
