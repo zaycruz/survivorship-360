@@ -29,7 +29,7 @@ Every number in the product traces to held-out validation. Each module states wh
 |---|---|---|---|---|
 | Patient 360 | all | Clinician console: Today list, patients, per-patient 360 view, live coaching calls with recap, Ellie chat assistant | E2E 77/77 against the deployed site | [`coach-console`](modules/coach-console) |
 | C1 Care-team risk | C1 acute-care risk | Calibrated logistic model on MEPS survivors; risk tiers, factors, fairness by group | AUROC 0.666 (tie with baseline); calibration slope 1.09 vs 0.45 | [`c1-acute-risk`](modules/c1-acute-risk) |
-| C3 Bad Week Radar | C3 wearables | Forecasts rough patches 2–7 days early; urgent ER/admission tier with a "call today" action | 64% of patches caught early vs 59% calendar-only; ER/admissions 54% vs 42% | [`c3-rough-patch`](modules/c3-rough-patch) |
+| C3 Bad Week Radar | C3 wearables | Forecasts rough patches 2–7 days early from the survivor's own check-ins (relative to their usual), skipped check-ins, wearable and treatment calendar; urgent ER/admission tier with a "call today" action | At ~1 new alert per coach per day: 48% of patches caught early vs 36% calendar-only (CI +8 to +15 pts); ER/admissions 36% vs 22%; alert precision 18% vs 11% | [`c3-rough-patch`](modules/c3-rough-patch) |
 | C4 Glucose Guide | C4 dose & timing | Within-person effects of evening walks, late dinners and overnight fasting on blood sugar; personal advice only when the person's own data supports it | Evening walk −18.7 mg/dL after dinner (CI 17.2–20.4); each claim tagged with a real-data check | [`c4-glucose-guide`](modules/c4-glucose-guide) |
 | C5 Coach's Co-pilot | C5 coaching conversations | Tags every call line with an MI code in ~0.4 s (Cloudflare Clef), live fidelity score, safety banners, GLM coaching cues | 93.1% coach moves, 90.9% participant talk on 1,085 calls; 13/13 urgent lines caught | [`coach-copilot`](modules/coach-copilot) |
 | Challenge MCP | all | 13 read-only tools over every module for ChatGPT and Claude, incl. "score this conversation" | E2E 67/67 with the official MCP client | [`challenge-mcp`](modules/challenge-mcp) |
@@ -67,7 +67,7 @@ Diagrams are made in Paper; the PNGs in `docs/` are exports.
 
 - The module cohorts are separate synthetic datasets supplied by the sponsors; they share no patient ids. Cross-module views use composite synthetic personas, labelled as such.
 - C1 ranks no better than its baseline; its gain is calibration. It ranks NH Black survivors poorly (n = 47) and under-predicts at 75+; the UI warns for both.
-- C3's lead time is shown on synthetic data; in the real fatigue study the wearable does not forecast the next day.
+- C3's lead time is shown on synthetic data; in the real fatigue study the wearable does not forecast the next day. Alerts are a nudge: about 1 in 5.5 is followed by a rough patch within a week, and at that budget about half of patches are caught.
 - C4's real-data checks point the same way as the synthetic effects but do not prove them.
 - C5 agrees with AnnoMI experts 75.0% of the time vs 83.9% expert-to-expert agreement (91–93% where all experts agree).
 
