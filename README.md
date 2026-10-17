@@ -45,23 +45,35 @@ Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.m
 
 ## How each challenge works
 
-Each panel shows the data, the model, how it was validated, what the user sees, the held-out results and the honest limits.
+For each challenge, the technical diagram comes first (files, endpoints, models and fallbacks, every one checked against the repo and a live curl). The results panel follows it: the data, the model, how it was validated, what the user sees, the held-out results and the honest limits.
 
 ### C1 · Care-team risk
+
+![C1 technical architecture](docs/arch-c1.png)
 
 ![C1 Care-team risk](docs/c1.png)
 
 ### C3 · Bad Week Radar
 
+![C3 technical architecture](docs/arch-c3.png)
+
 ![C3 Bad Week Radar](docs/c3.png)
 
 ### C4 · Glucose Guide
+
+![C4 technical architecture](docs/arch-c4.png)
 
 ![C4 Glucose Guide](docs/c4.png)
 
 ### C5 · Coach's Co-pilot
 
+![C5 technical architecture](docs/arch-c5.png)
+
 ![C5 Coach's Co-pilot](docs/c5.png)
+
+### MCP server
+
+![MCP server technical architecture](docs/arch-mcp.png)
 
 Diagrams are made in Paper; the PNGs in `docs/` are exports.
 
