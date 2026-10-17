@@ -40,6 +40,8 @@ Who owns what: the challenge modules are engines and APIs only (model, data pipe
 
 ![Survivorship 360 architecture](docs/architecture.png)
 
+**Methodology:** [docs/methodology.md](docs/methodology.md) says how every AI and ML component was built and checked, and links to each module's `METHODOLOGY.md`.
+
 **How it works, end to end:** [docs/how-it-works.md](docs/how-it-works.md) traces every number on screen from the API field to the module file that computes it, and says which text is AI-written and which is fixed rules.
 
 Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.md` in each repo). Patient 360 and the MCP server consume only those contracts. Patient 360 falls back to a saved snapshot when a module is down.
