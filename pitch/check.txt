@@ -6,15 +6,15 @@ PASS   slide 2: notes (395 chars)
 PASS   slide 3: full-bleed image
 PASS   slide 3: notes (467 chars)
 PASS   slide 4: full-bleed image
-PASS   slide 4: notes (1066 chars)
+PASS   slide 4: notes (1057 chars)
 PASS   slide 5: full-bleed image
-PASS   slide 5: notes (888 chars)
+PASS   slide 5: notes (961 chars)
 PASS   slide 6: full-bleed image
-PASS   slide 6: notes (1540 chars)
+PASS   slide 6: notes (1580 chars)
 PASS   slide 7: full-bleed image
 PASS   slide 7: notes (903 chars)
 PASS   slide 8: full-bleed image
-PASS   slide 8: notes (1557 chars)
+PASS   slide 8: notes (1568 chars)
 PASS   slide 9: full-bleed image
 PASS   slide 9: notes (553 chars)
 PASS   slide 10: full-bleed image
@@ -29,15 +29,15 @@ PASS   slide 2: notes (395 chars)
 PASS   slide 3: full-bleed image
 PASS   slide 3: notes (467 chars)
 PASS   slide 4: full-bleed image
-PASS   slide 4: notes (1066 chars)
+PASS   slide 4: notes (1057 chars)
 PASS   slide 5: full-bleed image
-PASS   slide 5: notes (888 chars)
+PASS   slide 5: notes (961 chars)
 PASS   slide 6: full-bleed image
-PASS   slide 6: notes (1540 chars)
+PASS   slide 6: notes (1580 chars)
 PASS   slide 7: full-bleed image
 PASS   slide 7: notes (903 chars)
 PASS   slide 8: full-bleed image
-PASS   slide 8: notes (1557 chars)
+PASS   slide 8: notes (1568 chars)
 PASS   slide 9: full-bleed image
 PASS   slide 9: notes (553 chars)
 PASS   slide 10: full-bleed image
@@ -75,9 +75,8 @@ PASS   c4-glucose-guide/README.md: '**10-19 min gets most of it**'
 PASS   c4-glucose-guide/README.md: '**+9.2 mg/dL** (7.1 to 11.3)'
 PASS   c4-glucose-guide/README.md: '-0.03 points overall'
 PASS   c4-glucose-guide/README.md: 'walk after a meal -3.2 (-6.9 to 0.5)'
-PASS   c4-glucose-guide/README.md: '45 real adults'
+PASS   c4-glucose-guide/README.md: '44 real adults'
 PASS   coach-copilot/README.md: '**93.1%**'
-PASS   coach-copilot/README.md: '**0.789** (0.754–0.820)'
 PASS   coach-copilot/README.md: "The app's coach score agrees with each supervisor about as well as the two supervisors agree with each other: r = 0.75 with supervisor A and 0.70 with supervisor B, against 0.69 between A and B."
 PASS   coach-copilot/README.md: '**Haitian Creole is tested only on the safety flag**'
 PASS   coach-copilot/README.md: 'English and Spanish are measured separately'
@@ -88,7 +87,7 @@ PASS   c1-acute-risk/README.md: 'not significant (P(better) 0.93)'
 PASS   c1-acute-risk/README.md: '-0.067 [-0.115, -0.020], **significant**'
 PASS   c3-rough-patch/README.md: '**Baseline: calendar-only rough-patch model**'
 PASS   c3-rough-patch/README.md: '**Baseline: calendar-only ER model**'
-PASS   survivorship-360/README.md: 'E2E 117/117 with the official MCP client'
+PASS   survivorship-360/README.md: 'E2E 120/120 with the official MCP client'
 PASS   c4-glucose-guide/README.md: '44 with walk data'
 PASS   c4-glucose-guide/README.md: 'Walking was self-chosen, so this is an association'
 PASS   c4-glucose-guide/README.md: '-18 after dinner in the synthetic program'

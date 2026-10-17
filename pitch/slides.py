@@ -40,13 +40,13 @@ SLIDES = [
         "name": "04 Architecture",
         "notes": (
             "Two kinds of user: the care team (a clinician, nurse navigator or coach) working today's list, and anyone asking ChatGPT or Claude. "
-            "Two front doors: Patient 360 with its AI assistant, and the challenge MCP server. The MCP server passes 117 of 117 end-to-end checks with the official MCP client, including injected-failure fallbacks. Each challenge is its own Cloudflare Worker "
+            "Two front doors: Patient 360 with its AI assistant, and the challenge MCP server. The MCP server passes 120 of 120 end-to-end checks with the official MCP client, including injected-failure fallbacks. Each challenge is its own Cloudflare Worker "
             "with a CONTRACT.md generated from real responses; the front doors only read contracts, so modules ship independently. "
             "If a module is down, Patient 360 serves its saved snapshot and says so with a per-module chip; AI calls retry once and never block a tag. "
             "Splits are by person, and every module's E2E run against its live deployment is saved as an artifact. "
             "Models: a calibrated random forest for C1, two gradient-boosting models for C3, double ML within person for C4, "
             "and Workers AI through AI Gateway: the Clef classifier for C5 tags and flags, GLM-5.3-flash for cues, the assistant and recaps, "
-            "Llama 3.3 for C4 rewrites. Real-data checks use MEPS, Synthea, CGMacros, NHANES and AnnoMI."
+            "Llama 3.3 for C4 rewrites. Real-data checks use MEPS, CGMacros, NHANES and AnnoMI."
         ),
     },
     {
@@ -54,9 +54,9 @@ SLIDES = [
         "notes": (
             "C1: who may need acute care next year. The headline: our probabilities are significantly better than the organisers' "
             "baseline. Log loss, where lower is better, is 0.539 against 0.606, a significant gain, and a calibration slope of 1.10 against the baseline's 0.45, "
-            "where 1 is ideal. When the model we serve says 50 percent risk or more, it is right 59 percent of the time, interval 46 to 71, versus 48 for the baseline. "
+            "where 1 is ideal. When the model we serve says 50 percent risk or more, it is right 59 percent of the time, interval 46 to 71, versus 48 for the baseline, just short of significant. "
             "The data is real MEPS survey answers from 466 cancer survivors, 134 of whom had an ER visit or hospital stay. The model is "
-            "a calibrated random forest chosen from 48 candidates, scored with nested cross-validation over 10 outer folds so no score saw its own test fold. "
+            "a calibrated random forest chosen from 48 candidates, scored out of fold with 10 by 5 cross-validation; log loss and AUROC were also checked with nested cross-validation over 10 outer folds. "
             "Ranking is better too, AUROC 0.711 vs 0.672, but that gain is not significant, and we say so. The limit: it ranks NH Black "
             "survivors poorly, AUROC 0.48 on only 47 people, and the panel warns about it."
         ),
@@ -69,7 +69,7 @@ SLIDES = [
             "baseline, because most bad weeks follow a dose. We gave every method the same alert budget, 5 percent of quiet days, "
             "which is about one new alert per coach per day. On 750 patients split by patient, against the calendar baseline, it catches 48 percent of "
             "patches 2 to 7 days early versus 36, and 18 percent of alerts come true versus 11. "
-            "A separate urgent tier catches 47 percent of ER visits and admissions 2 to 7 days early, against 36 percent for the calendar-only ER model, a lift of 2 to 19 points. An urgent flag means about 6 times the usual ER or hospital risk that week: a prompt to check in, not a prediction. About 1 urgent flag in 14 is followed by an ER visit. On top of that, a model-free escalation, red-flag diary notes, passive suicidal ideation in English, Spanish or Creole, or a day rated 1 of 5, raises it to 61 percent versus 47, interval plus 9 to plus 19 points, for about 4 more calls per coach per week. The limit: in a real fatigue study the wearable "
+            "A separate urgent tier, which flags the top 3 percent of days, catches 47 percent of ER visits and admissions 2 to 7 days early, against 36 percent for the calendar-only ER model, a lift of 2 to 19 points. An urgent flag means about 6 times the usual ER or hospital risk that week: a prompt to check in, not a prediction. About 1 urgent flag in 14 is followed by an ER visit. On top of that, a model-free escalation, red-flag diary notes, passive suicidal ideation in English, Spanish or Creole, or a day rated 1 of 5, raises it to 61 percent versus 47, interval plus 9 to plus 19 points, for about 4 more calls per coach per week. The limit: in a real fatigue study the wearable "
             "does not forecast the next day, AUC 0.482, so lead time is shown on synthetic data only. "
             "On later dates, trained before July 2025 and tested from October 2025, it is 44 percent versus 36, interval minus 1 to plus 17: same direction, not significant. "
             "And recall is clearly lower for sarcoma, 13 percent against 28 overall."
@@ -91,7 +91,7 @@ SLIDES = [
             "C5, the Coach's Co-pilot. The headline: the app's coach score agrees with each supervisor about as well as the two supervisors "
             "agree with each other: r = 0.75 with supervisor A and 0.70 with supervisor B, against 0.69 between A and B, over 477 held-out calls. "
             "It works in English and Spanish; Haitian Creole is tested only on the safety flag, so tags and scores are not validated in Creole. It follows a coaching call live "
-            "and tags every line with a motivational-interviewing code using Cloudflare's Clef classifier. Model time is 0.3 to 0.5 seconds per line; a browser round trip takes longer, because it adds the network and, on participant lines, the parallel flag call. It tags a coach move from 12 labels and the client's talk as change, sustain or neutral. The data is 1,085 calls with 56,001 answered lines, split 20 percent for tuning and 80 percent held out for validation. "
+            "and tags every line with a motivational-interviewing code using Cloudflare's Clef classifier. Model time is 0.3 to 0.5 seconds per line; a browser round trip takes longer, because it adds the network and, on participant lines, the parallel flag call. It tags a coach move from 12 labels and the client's talk as change, sustain or neutral. Tuning used 20 percent of participants; the other 80 percent, 1,085 calls with 56,001 answered lines, are held out for validation. "
             "On held-out calls it tags coach moves right 93.1 percent of the time, and it caught all 13 urgent lines. On an independent held-out set it now catches 44 of 54 suicide warning signs, up from 25. "
             "The cost: 244 false alarms in 25,785 lines, up from 9, which is about 1 call in 5. It still misses about 1 in 5 indirect warning signs, so every distress flag tells the coach to use their suicide-risk screening protocol now. As a transfer check we ran it, never tuned on it, against AnnoMI, an outside set of real "
             "counselling sessions labelled by experts: it agrees 75.0 percent, experts agree with the majority 83.9 percent, and "
@@ -157,9 +157,8 @@ CLAIMS = [
     ("**+9.2 mg/dL** (7.1 to 11.3)", "c4-glucose-guide", "README.md"),
     ("-0.03 points overall", "c4-glucose-guide", "README.md"),
     ("walk after a meal -3.2 (-6.9 to 0.5)", "c4-glucose-guide", "README.md"),
-    ("45 real adults", "c4-glucose-guide", "README.md"),
+    ("44 real adults", "c4-glucose-guide", "README.md"),
     ("**93.1%**", "coach-copilot", "README.md"),
-    ("**0.789** (0.754–0.820)", "coach-copilot", "README.md"),
     ("The app's coach score agrees with each supervisor about as well as the two supervisors agree with each other: r = 0.75 with supervisor A and 0.70 with supervisor B, against 0.69 between A and B.", "coach-copilot", "README.md"),
     ("**Haitian Creole is tested only on the safety flag**", "coach-copilot", "README.md"),
     ("English and Spanish are measured separately", "coach-copilot", "README.md"),
@@ -170,7 +169,7 @@ CLAIMS = [
     ("-0.067 [-0.115, -0.020], **significant**", "c1-acute-risk", "README.md"),
     ("**Baseline: calendar-only rough-patch model**", "c3-rough-patch", "README.md"),
     ("**Baseline: calendar-only ER model**", "c3-rough-patch", "README.md"),
-    ("E2E 117/117 with the official MCP client", "survivorship-360", "README.md"),
+    ("E2E 120/120 with the official MCP client", "survivorship-360", "README.md"),
     ("44 with walk data", "c4-glucose-guide", "README.md"),
     ("Walking was self-chosen, so this is an association", "c4-glucose-guide", "README.md"),
     ("-18 after dinner in the synthetic program", "c4-glucose-guide", "README.md"),
