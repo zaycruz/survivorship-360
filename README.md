@@ -44,6 +44,20 @@ Who owns what: the challenge modules are engines and APIs only (model, data pipe
 
 Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.md` in each repo). Patient 360 and the MCP server consume only those contracts. Patient 360 falls back to a saved snapshot when a module is down.
 
+## For presenters
+
+Three one-look diagrams for judges' questions. Every box is checked against the code; every number comes from a module README or `docs/claims.tsv`.
+
+- **Clef at runtime:** what happens to one spoken line of a call, with live timings, and which steps are AI and which are rules.
+
+  ![Clef at runtime](docs/clef-runtime.png)
+- **The ML models:** every model in one view: input data, model, validation, headline vs baseline, honest limit, where it shows up.
+
+  ![The ML models](docs/ml-models.png)
+- **The forecasts:** what we forecast, how far ahead, and what the care team does on the Today list.
+
+  ![The forecasts](docs/forecasts.png)
+
 ## How each challenge works
 
 For each challenge, the technical diagram comes first (files, endpoints, models and fallbacks, every one checked against the repo and a live curl). The results panel follows it: the data, the model, how it was validated, what the user sees, the held-out results and the honest limits.
