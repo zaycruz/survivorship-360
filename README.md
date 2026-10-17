@@ -37,15 +37,31 @@ Every number in the product traces to held-out validation. Each module states wh
 
 ## Architecture
 
-```
- survivors (iOS app) ──┐                         ┌── C1 risk Worker
- clinicians (Patient 360)──> module APIs (Cloudflare Workers) ──┼── C3 radar Worker
- ChatGPT / Claude (MCP) ──┘                         ├── C4 glucose Worker
-                                                    └── C5 co-pilot Worker ──> Workers AI via AI Gateway
-                                                                              (Clef classifier, GLM-5.3-flash)
-```
+![Survivorship 360 architecture](docs/architecture.png)
 
 Each module is its own Cloudflare Worker with a small JSON contract (`CONTRACT.md` in each repo). Patient 360, the MCP server and the iOS app consume only those contracts, and fall back to a saved snapshot when a module is down.
+
+## How each challenge works
+
+Each panel shows the data, the model, how it was validated, what the user sees, the held-out results and the honest limits.
+
+### C1 · Care-team risk
+
+![C1 Care-team risk](docs/c1.png)
+
+### C3 · Bad Week Radar
+
+![C3 Bad Week Radar](docs/c3.png)
+
+### C4 · Glucose Guide
+
+![C4 Glucose Guide](docs/c4.png)
+
+### C5 · Coach's Co-pilot
+
+![C5 Coach's Co-pilot](docs/c5.png)
+
+Diagrams are made in Paper; the PNGs in `docs/` are exports.
 
 ## Honest limits
 
