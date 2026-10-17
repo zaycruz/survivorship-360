@@ -1,0 +1,147 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Survivorship 360 Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;700&display=swap">
+<style>
+/* Layout: a presenter frame. Slide stage on top, controls bar, then a strip of every slide. */
+:root {
+  --bg: #f3f5f8; --surface: #ffffff; --ink: #0f1b2d; --muted: #44536a; --line: #dde3eb; --accent: #0b5cad; --on-accent: #ffffff;
+  --display: "IBM Plex Sans", system-ui, sans-serif; --body: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); margin: 0 }
+.wrap { max-width: 1280px; margin-inline: auto; padding-inline: 16px; padding-block: 20px 32px; display: flex; flex-direction: column; gap: 14px }
+header { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap }
+h1 { font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 30px); margin: 0 }
+.eyebrow { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent) }
+.stage { position: relative; aspect-ratio: 16 / 9; max-width: 100%; background: #FFFFFF; border: 1px solid var(--line); overflow: hidden; touch-action: pan-y }
+.stage img { display: block; width: 100%; height: 100%; object-fit: contain }
+.stage .hit { position: absolute; top: 0; bottom: 0; width: 30%; background: none; border: 0; cursor: pointer }
+.stage .hit.prev { left: 0 } .stage .hit.next { right: 0 }
+.stage:fullscreen { border: 0; background: #FFFFFF }
+.bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap }
+.bar .spacer { flex: 1 }
+.count { font-family: var(--mono); font-weight: 500; font-size: 14px; letter-spacing: 0.06em; font-variant-numeric: tabular-nums; color: var(--muted); min-width: 7ch }
+.title { font-family: var(--body); font-weight: 500; font-size: 15px }
+button.ctl { font-family: var(--mono); font-weight: 500; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink); background: var(--surface); border: 1px solid var(--line); padding: 8px 12px; cursor: pointer }
+button.ctl:hover { border-color: var(--ink) }
+button.ctl[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent) }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+.notes { background: var(--surface); border-left: 4px solid var(--accent); padding: 16px 20px; font-size: 16px; line-height: 1.6; max-width: 75ch }
+.notes .eyebrow { display: block; margin-bottom: 6px }
+.strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent); mask-image: linear-gradient(to right, #000 calc(100% - 48px), transparent) }
+.thumb { flex: 0 0 calc((100% - 70px) / 8); min-width: 132px; scroll-snap-align: start; display: flex; flex-direction: column; gap: 6px; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; color: var(--muted) }
+.thumb img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border: 2px solid var(--line); background: #FFFFFF }
+.thumb span { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.thumb[aria-current="true"] img { border-color: var(--accent) }
+.thumb[aria-current="true"] span { color: var(--ink) }
+.hint { font-size: 13px; color: var(--muted) }
+#slidesBtn, .eyebrow .short { display: none }
+/* Phone: full-width stage, short eyebrow, 48px controls on one row, every slide as a 3-up grid below. */
+@media (max-width: 600px) {
+  .wrap { padding-block: 12px 24px; gap: 12px }
+  .stage { margin-inline: -16px; max-width: none; border-inline: 0 }
+  .eyebrow .long, .hint, .bar .spacer { display: none }
+  .eyebrow .short { display: inline }
+  .bar { display: grid; grid-template-columns: 1fr 1fr auto; gap: 8px }
+  .bar .count { grid-column: 3; grid-row: 1; align-self: center; text-align: right }
+  .bar .title { grid-column: 1 / -1; font-size: 14px }
+  button.ctl { min-height: 48px; padding: 8px 10px }
+  #prev { grid-column: 1; grid-row: 1 } #next { grid-column: 2; grid-row: 1 }
+  .strip { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; -webkit-mask-image: none; mask-image: none }
+  .thumb { flex: none; min-width: 0 }
+  .thumb span { font-size: 10px }
+}
+</style>
+<div class="wrap">
+  <header>
+    <div><div class="eyebrow"><span class="long">eMerge Hackathon · Sylvester healthcare track</span><span class="short">eMerge · Sylvester track</span></div><h1>Survivorship 360</h1></div>
+    <div class="hint">← → to move · F for full screen · N for speaker notes · updated Oct 17, 3:54 PM EDT</div>
+  </header>
+  <div class="stage" id="stage">
+    <img id="slide" src="slides/01.png" alt="">
+    <button class="hit prev" id="hitPrev" aria-label="Previous slide"></button>
+    <button class="hit next" id="hitNext" aria-label="Next slide"></button>
+  </div>
+  <div class="bar">
+    <button class="ctl" id="prev">Prev</button>
+    <button class="ctl" id="next">Next</button>
+    <span class="count" id="count">01 / 11</span>
+    <span class="title" id="title"></span>
+    <span class="spacer"></span>
+    <button class="ctl" id="notesBtn" aria-pressed="false">Notes</button>
+    <button class="ctl" id="fsBtn">Full screen</button>
+    <button class="ctl" id="slidesBtn" aria-pressed="false" aria-controls="strip">Slides</button>
+  </div>
+  <div class="notes" id="notes" hidden><span class="eyebrow">Speaker notes</span><span id="notesText"></span></div>
+  <nav class="strip" id="strip" aria-label="All slides">
+<button class="thumb" data-i="0" aria-label="Slide 1: Title"><img src="slides/01.png" alt="" loading="lazy"><span>01 · Title</span></button>
+<button class="thumb" data-i="1" aria-label="Slide 2: Problem"><img src="slides/02.png" alt="" loading="lazy"><span>02 · Problem</span></button>
+<button class="thumb" data-i="2" aria-label="Slide 3: Product"><img src="slides/03.png" alt="" loading="lazy"><span>03 · Product</span></button>
+<button class="thumb" data-i="3" aria-label="Slide 4: Architecture"><img src="slides/04.png" alt="" loading="lazy"><span>04 · Architecture</span></button>
+<button class="thumb" data-i="4" aria-label="Slide 5: C1"><img src="slides/05.png" alt="" loading="lazy"><span>05 · C1</span></button>
+<button class="thumb" data-i="5" aria-label="Slide 6: C3"><img src="slides/06.png" alt="" loading="lazy"><span>06 · C3</span></button>
+<button class="thumb" data-i="6" aria-label="Slide 7: C4"><img src="slides/07.png" alt="" loading="lazy"><span>07 · C4</span></button>
+<button class="thumb" data-i="7" aria-label="Slide 8: C5"><img src="slides/08.png" alt="" loading="lazy"><span>08 · C5</span></button>
+<button class="thumb" data-i="8" aria-label="Slide 9: Honesty"><img src="slides/09.png" alt="" loading="lazy"><span>09 · Honesty</span></button>
+<button class="thumb" data-i="9" aria-label="Slide 10: Demo"><img src="slides/10.png" alt="" loading="lazy"><span>10 · Demo</span></button>
+<button class="thumb" data-i="10" aria-label="Slide 11: Next"><img src="slides/11.png" alt="" loading="lazy"><span>11 · Next</span></button>
+  </nav>
+</div>
+<script>
+const SLIDES = [{"n": 1, "name": "Title", "notes": "Hi, we're Survivorship 360. A cancer-survivorship care team gets signals from everywhere: surveys, wearables, glucose sensors, coaching calls. We built one place to see who needs them today, and why. Four AI modules, one per challenge, joined into one care-team console for clinicians, nurse navigators and coaches, with a chat assistant; patients never use it. There is also an MCP server so ChatGPT or Claude can ask the same questions. Built in one day, all custom, all live on Cloudflare."}, {"n": 2, "name": "Problem", "notes": "The care team's problem is not a lack of data. It's too many signals and no ranking. Who is heading into a rough week? Who is likely to end up in the ER next year? Which daily habit actually moves this person's blood sugar? Is the coaching call going well, and did the participant just say something a person must act on today? Today the coach hears about a bad week at the next call, days late."}, {"n": 3, "name": "Product", "notes": "Two front doors over the same four modules. Patient 360 is the care team's console, for clinicians, nurse navigators and coaches; patients never see it: a Today list, patient roster, a 360 view per survivor, live coaching calls with a recap, and an AI assistant that can navigate and answer. And any AI assistant, ChatGPT or Claude, can use the 12 read-only MCP tools, for example 'who should we call today', one survivor across modules, or 'score this conversation'."}, {"n": 4, "name": "Architecture", "notes": "Two kinds of user: the care team (a clinician, nurse navigator or coach) working today's list, and anyone asking ChatGPT or Claude. Two front doors: Patient 360 with its AI assistant, and the challenge MCP server. The MCP server passes 117 of 117 end-to-end checks with the official MCP client, including injected-failure fallbacks. Each challenge is its own Cloudflare Worker with a CONTRACT.md generated from real responses; the front doors only read contracts, so modules ship independently. If a module is down, Patient 360 serves its saved snapshot and says so with a per-module chip; AI calls retry once and never block a tag. Splits are by person, and every module's E2E run against its live deployment is saved as an artifact. Models: a calibrated random forest for C1, two gradient-boosting models for C3, double ML within person for C4, and Workers AI through AI Gateway: the Clef classifier for C5 tags and flags, GLM-5.3-flash for cues, the assistant and recaps, Llama 3.3 for C4 rewrites. Real-data checks use MEPS, Synthea, CGMacros, NHANES and AnnoMI."}, {"n": 5, "name": "C1", "notes": "C1: who may need acute care next year. The headline: our probabilities are significantly better than the organisers' baseline. Log loss, where lower is better, is 0.539 against 0.606, a significant gain, and a calibration slope of 1.10 against the baseline's 0.45, where 1 is ideal. When the model we serve says 50 percent risk or more, it is right 59 percent of the time, interval 46 to 71, versus 48 for the baseline. The data is real MEPS survey answers from 466 cancer survivors, 134 of whom had an ER visit or hospital stay. The model is a calibrated random forest chosen from 48 candidates, scored with nested cross-validation over 10 outer folds so no score saw its own test fold. Ranking is better too, AUROC 0.711 vs 0.672, but that gain is not significant, and we say so. The limit: it ranks NH Black survivors poorly, AUROC 0.48 on only 47 people, and the panel warns about it."}, {"n": 6, "name": "C3", "notes": "C3, the Bad Week Radar. Every evening it forecasts whether a rough patch starts in the next week, from the survivor's own check-ins against their usual, skipped check-ins, the wearable, and the treatment calendar. The calendar is the honest baseline, because most bad weeks follow a dose. We gave every method the same alert budget, 5 percent of quiet days, which is about one new alert per coach per day. On 750 patients split by patient, against the calendar baseline, it catches 48 percent of patches 2 to 7 days early versus 36, and 18 percent of alerts come true versus 11. A separate urgent tier catches 47 percent of ER visits and admissions 2 to 7 days early, against 36 percent for the calendar-only ER model, a lift of 2 to 19 points. An urgent flag means about 6 times the usual ER or hospital risk that week: a prompt to check in, not a prediction. About 1 urgent flag in 14 is followed by an ER visit. On top of that, a model-free escalation, red-flag diary notes, passive suicidal ideation in English, Spanish or Creole, or a day rated 1 of 5, raises it to 61 percent versus 47, interval plus 9 to plus 19 points, for about 4 more calls per coach per week. The limit: in a real fatigue study the wearable does not forecast the next day, AUC 0.482, so lead time is shown on synthetic data only. On later dates, trained before July 2025 and tested from October 2025, it is 44 percent versus 36, interval minus 1 to plus 17: same direction, not significant. And recall is clearly lower for sarcoma, 13 percent against 28 overall."}, {"n": 7, "name": "C4", "notes": "C4, the Glucose Guide. The real number first. In 44 real adults in the CGMacros study, a walk after a meal went with a rise only 3.2 mg/dL smaller, confidence interval minus 6.9 to plus 0.5: not distinguishable from zero. In the synthetic program, a walk after dinner shows minus 18.3 mg/dL, interval 16.6 to 20.1. The program is a synthetic 12-week cohort: 500 sensor wearers, 18,218 meal curves. We use double machine learning within each person, so each survivor is compared with themselves, and the walk effect passes a negative control. 10 to 19 minutes gets most of it. Dinner at 8 pm or later adds 9.2. The overnight fast barely moved HbA1c, minus 0.03. Personal advice appears only when the person's own data supports it, and every number in the advice traces to evidence. Walks were self-chosen, so this is an association, and we expect a much smaller effect in real people than in the program."}, {"n": 8, "name": "C5", "notes": "C5, the Coach's Co-pilot. The headline: the app's coach score agrees with each supervisor about as well as the two supervisors agree with each other: r = 0.75 with supervisor A and 0.70 with supervisor B, against 0.69 between A and B, over 477 held-out calls. It works in English and Spanish; Haitian Creole is tested only on the safety flag, so tags and scores are not validated in Creole. It follows a coaching call live and tags every line with a motivational-interviewing code using Cloudflare's Clef classifier. Model time is 0.3 to 0.5 seconds per line; a browser round trip takes longer, because it adds the network and, on participant lines, the parallel flag call. It tags a coach move from 12 labels and the client's talk as change, sustain or neutral. The data is 1,085 calls with 56,001 answered lines, split 20 percent for tuning and 80 percent held out for validation. On held-out calls it tags coach moves right 93.1 percent of the time, and it caught all 13 urgent lines. On an independent held-out set it now catches 44 of 54 suicide warning signs, up from 25. The cost: 244 false alarms in 25,785 lines, up from 9, which is about 1 call in 5. It still misses about 1 in 5 indirect warning signs, so every distress flag tells the coach to use their suicide-risk screening protocol now. As a transfer check we ran it, never tuned on it, against AnnoMI, an outside set of real counselling sessions labelled by experts: it agrees 75.0 percent, experts agree with the majority 83.9 percent, and where all experts agree it gets 91 to 93 percent."}, {"n": 9, "name": "Honesty", "notes": "How to read our numbers. Every number traces to a validation run in its module's repo: held-out patients for C3 and C5, nested out-of-fold cross-validation for C1, cross-fitted estimates with falsification checks for C4. Every headline sits next to its baseline. Each module shows its weak spot in the product itself, not only in the README: fairness gaps and real-data checks that do not confirm the synthetic effect. The cohorts are separate synthetic datasets that share no patient ids, so cross-module views use composite personas, labelled as such."}, {"n": 10, "name": "Demo", "notes": "Here is what you'll see live. Open Patient 360, the Today list. Open one survivor and see why they're on the list. Play a coaching call and watch the tags, the score and the banners appear. Ask the AI assistant a question. Then, from Claude or ChatGPT, connect the MCP server at emerge-mcp.raava.dev/mcp and ask who to call today. The console is at patient-360.raava.dev and the coach's call console at coach.raava.dev. Each module also has its own page if you want to dig into the model card."}, {"n": 11, "name": "Next", "notes": "What's next. C1: predict the first acute event, not last year's repeat users; that's the hard, useful part. C3: a causal scoring mask would let us use yesterday's rating, the strongest next-day signal in real data. And the big one: validate on real Sylvester survivorship data. Our proposal: a pilot with the survivorship care team. Thank you."}];
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2, "0");
+let i = 0;
+SLIDES.forEach(s => { const im = new Image(); im.src = `slides/${pad(s.n)}.png`; });
+function show(n) {
+  i = Math.max(0, Math.min(SLIDES.length - 1, n));
+  const s = SLIDES[i];
+  $("slide").src = `slides/${pad(s.n)}.png`;
+  $("slide").alt = `Slide ${s.n}: ${s.name}`;
+  $("count").textContent = `${pad(s.n)} / ${pad(SLIDES.length)}`;
+  $("title").textContent = s.name;
+  $("notesText").textContent = s.notes;
+  document.querySelectorAll(".thumb").forEach((t, k) => {
+    t.setAttribute("aria-current", k === i ? "true" : "false");
+    if (k === i) t.scrollIntoView({ block: "nearest", inline: "nearest" });
+  });
+  try { history.replaceState(null, "", "#" + s.n); } catch (e) {}
+}
+function toggleNotes() {
+  const on = $("notes").hidden;
+  $("notes").hidden = !on;
+  $("notesBtn").setAttribute("aria-pressed", on ? "true" : "false");
+}
+function fullscreen() {
+  const st = $("stage");
+  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  else if (st.requestFullscreen) st.requestFullscreen().catch(() => {});
+}
+$("prev").onclick = $("hitPrev").onclick = () => show(i - 1);
+$("next").onclick = $("hitNext").onclick = () => show(i + 1);
+$("notesBtn").onclick = toggleNotes;
+$("fsBtn").onclick = fullscreen;
+$("slidesBtn").onclick = () => { const on = $("strip").classList.toggle("open"); $("slidesBtn").setAttribute("aria-pressed", on ? "true" : "false"); };
+document.querySelectorAll(".thumb").forEach(t => t.onclick = () => show(+t.dataset.i));
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); show(i + 1); }
+  else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); show(i - 1); }
+  else if (e.key === "Home") show(0);
+  else if (e.key === "End") show(SLIDES.length - 1);
+  else if (e.key === "n" || e.key === "N") toggleNotes();
+  else if (e.key === "f" || e.key === "F") fullscreen();
+});
+let x0 = null;
+$("stage").addEventListener("touchstart", e => { x0 = e.touches[0].clientX; }, { passive: true });
+$("stage").addEventListener("touchend", e => {
+  if (x0 === null) return;
+  const dx = e.changedTouches[0].clientX - x0; x0 = null;
+  if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+});
+const start = parseInt((location.hash || "").slice(1), 10);
+show(Number.isFinite(start) ? start - 1 : 0);
+</script>

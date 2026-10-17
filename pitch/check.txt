@@ -1,0 +1,119 @@
+PASS deck.pptx: 11 slides, expected 11
+PASS   slide 1: full-bleed image
+PASS   slide 1: notes (492 chars)
+PASS   slide 2: full-bleed image
+PASS   slide 2: notes (395 chars)
+PASS   slide 3: full-bleed image
+PASS   slide 3: notes (467 chars)
+PASS   slide 4: full-bleed image
+PASS   slide 4: notes (1066 chars)
+PASS   slide 5: full-bleed image
+PASS   slide 5: notes (888 chars)
+PASS   slide 6: full-bleed image
+PASS   slide 6: notes (1540 chars)
+PASS   slide 7: full-bleed image
+PASS   slide 7: notes (903 chars)
+PASS   slide 8: full-bleed image
+PASS   slide 8: notes (1557 chars)
+PASS   slide 9: full-bleed image
+PASS   slide 9: notes (553 chars)
+PASS   slide 10: full-bleed image
+PASS   slide 10: notes (493 chars)
+PASS   slide 11: full-bleed image
+PASS   slide 11: notes (343 chars)
+PASS survivorship-360-pitch.pptx: 11 slides, expected 11
+PASS   slide 1: full-bleed image
+PASS   slide 1: notes (492 chars)
+PASS   slide 2: full-bleed image
+PASS   slide 2: notes (395 chars)
+PASS   slide 3: full-bleed image
+PASS   slide 3: notes (467 chars)
+PASS   slide 4: full-bleed image
+PASS   slide 4: notes (1066 chars)
+PASS   slide 5: full-bleed image
+PASS   slide 5: notes (888 chars)
+PASS   slide 6: full-bleed image
+PASS   slide 6: notes (1540 chars)
+PASS   slide 7: full-bleed image
+PASS   slide 7: notes (903 chars)
+PASS   slide 8: full-bleed image
+PASS   slide 8: notes (1557 chars)
+PASS   slide 9: full-bleed image
+PASS   slide 9: notes (553 chars)
+PASS   slide 10: full-bleed image
+PASS   slide 10: notes (493 chars)
+PASS   slide 11: full-bleed image
+PASS   slide 11: notes (343 chars)
+PASS deck.pdf exists (837557 bytes)
+PASS survivorship-360-pitch.pdf exists (837557 bytes)
+PASS slides/: 11 PNGs
+Numbers traced to module docs (read now):
+PASS   survivorship-360/README.md: '12 read-only tools'
+PASS   c1-acute-risk/README.md: '466'
+PASS   c1-acute-risk/README.md: '134 events'
+PASS   c1-acute-risk/README.md: '48 candidates'
+PASS   c1-acute-risk/README.md: '**0.539** | 0.606'
+PASS   c1-acute-risk/README.md: '0.45 [0.25, 0.69] | 1.09 | **1.10**'
+PASS   c1-acute-risk/README.md: '**0.711** | 0.672'
+PASS   c1-acute-risk/README.md: 'right 59% of the time [46%, 71%]'
+PASS   c1-acute-risk/README.md: 'AUROC 0.48 [0.25, 0.70], n = 47'
+PASS   c3-rough-patch/README.md: '750 patients'
+PASS   c3-rough-patch/README.md: '5% of quiet days'
+PASS   c3-rough-patch/README.md: 'about one new alert per coach per day'
+PASS   c3-rough-patch/README.md: 'Patches caught early: 48% vs 36% (95% CI +8 to +15 points over patients)'
+PASS   c3-rough-patch/README.md: '47% vs 36% of ER visits caught 2–7 days early (95% CI +2 to +19 points over patients'
+PASS   c3-rough-patch/README.md: 'urgent tier + escalation catches 61% vs 47% of ER visits 2–7 days early (95% CI +9 to +19 points over patients)'
+PASS   c3-rough-patch/README.md: 'about 6x the usual risk'
+PASS   c3-rough-patch/README.md: 'about 1 in 14 urgent flags is followed by an ER visit'
+PASS   c3-rough-patch/README.md: 'Alert precision: 18% vs 11%'
+PASS   c3-rough-patch/README.md: 'Patches caught early: 44% vs 36% for the calendar. The 95% CI is -1 to +17 points'
+PASS   c3-rough-patch/README.md: 'AUC 0.482'
+PASS   c3-rough-patch/README.md: 'Only sarcoma is clearly below the overall 28% (13%, CI 0–26%)'
+PASS   c4-glucose-guide/README.md: '500 sensor wearers, 18,218 clean meal curves'
+PASS   c4-glucose-guide/README.md: '**18.3 mg/dL lower** (16.6 to 20.1)'
+PASS   c4-glucose-guide/README.md: '**10-19 min gets most of it**'
+PASS   c4-glucose-guide/README.md: '**+9.2 mg/dL** (7.1 to 11.3)'
+PASS   c4-glucose-guide/README.md: '-0.03 points overall'
+PASS   c4-glucose-guide/README.md: 'walk after a meal -3.2 (-6.9 to 0.5)'
+PASS   c4-glucose-guide/README.md: '45 real adults'
+PASS   coach-copilot/README.md: '**93.1%**'
+PASS   coach-copilot/README.md: '**0.789** (0.754–0.820)'
+PASS   coach-copilot/README.md: "The app's coach score agrees with each supervisor about as well as the two supervisors agree with each other: r = 0.75 with supervisor A and 0.70 with supervisor B, against 0.69 between A and B."
+PASS   coach-copilot/README.md: '**Haitian Creole is tested only on the safety flag**'
+PASS   coach-copilot/README.md: 'English and Spanish are measured separately'
+PASS   coach-copilot/README.md: 'There are 477 validation calls'
+PASS   coach-copilot/README.md: 'Where all 10 experts agreed, Clef gets 91.1% (counsellor, 112 lines) and 93.1% (client, 58)'
+PASS   coach-copilot/README.md: 'The payload was tuned on synthetic cancer-coaching calls, not on AnnoMI'
+PASS   c1-acute-risk/README.md: 'not significant (P(better) 0.93)'
+PASS   c1-acute-risk/README.md: '-0.067 [-0.115, -0.020], **significant**'
+PASS   c3-rough-patch/README.md: '**Baseline: calendar-only rough-patch model**'
+PASS   c3-rough-patch/README.md: '**Baseline: calendar-only ER model**'
+PASS   survivorship-360/README.md: 'E2E 117/117 with the official MCP client'
+PASS   c4-glucose-guide/README.md: '44 with walk data'
+PASS   c4-glucose-guide/README.md: 'Walking was self-chosen, so this is an association'
+PASS   c4-glucose-guide/README.md: '-18 after dinner in the synthetic program'
+PASS   c4-glucose-guide/README.md: 'a walk after a meal went with a sugar rise only 3.2 mg/dL smaller (95% CI −6.9 to +0.5): not distinguishable from zero'
+PASS   c4-glucose-guide/README.md: 'In the synthetic program, a walk after dinner shows −18.3 mg/dL'
+PASS   c4-glucose-guide/README.md: 'expect a much smaller effec'
+PASS   coach-copilot/README.md: '1,085 calls'
+PASS   coach-copilot/README.md: '**13/13** (10 medical, 2 social, 1 distress)'
+PASS   coach-copilot/README.md: '**244 / 25,785**'
+PASS   coach-copilot/README.md: 'suicide risk **44 / 54**'
+PASS   coach-copilot/README.md: 'p50 ~0.3–0.5 s'
+PASS   coach-copilot/README.md: 'Clef call time per line in the batch run'
+PASS   coach-copilot/README.md: 'A `/api/turn` round trip from a browser takes longer'
+PASS   coach-copilot/README.md: '75.0%'
+PASS   coach-copilot/README.md: '83.9%'
+PASS   c1-acute-risk/README.md: '10 outer folds'
+PASS   c1-acute-risk/README.md: '≥ 50% that came true'
+PASS   c3-rough-patch/README.md: '2–7 d early'
+PASS   c3-rough-patch/README.md: 'in the next 7 days'
+PASS   c4-glucose-guide/README.md: 'Synthetic 12-week program'
+PASS   c4-glucose-guide/README.md: 'Dinner at 8 pm'
+PASS   c4-glucose-guide/README.md: 'It passes a negative control'
+PASS   c4-glucose-guide/README.md: 'the randomized arm changed HbA1c by -0.03'
+PASS   coach-copilot/README.md: '1,085 calls, 56,001 answered lines'
+PASS   coach-copilot/README.md: '`move` (12 labels)'
+PASS   coach-copilot/README.md: '`talk` (change/sustain/neutral)'
+PASS   coach-copilot/README.md: '**dev 20%** (tuning) and **validation 80%**'
+RESULT: PASS

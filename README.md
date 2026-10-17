@@ -21,6 +21,7 @@ Every number in the product traces to a validation run in its module's repo: hel
 | C4 Glucose Guide | https://c4-glucose-guide.zay-259.workers.dev |
 | C5 Coach's Co-pilot | https://coach.raava.dev |
 | MCP server (ChatGPT / Claude) | `https://emerge-mcp.raava.dev/mcp` |
+| Pitch deck (11 slides, PDF and PPTX in [`pitch/`](pitch)) | https://survivorship-360-pitch.zay-259.workers.dev |
 
 ## Modules
 

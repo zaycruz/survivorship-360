@@ -1,0 +1,8 @@
+{
+  // Static hosting for the pitch deck. Content is built by build_web.py into ./web.
+  // Custom domain (needs approval, DNS change): "routes": [{ "pattern": "pitch-360.raava.dev", "custom_domain": true }]
+  "name": "survivorship-360-pitch",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "assets": { "directory": "./web" }
+}
