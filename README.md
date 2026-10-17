@@ -93,7 +93,7 @@ The E2E suites run against the live Workers and need only `npm ci`.
 - C1 ranks better than its baseline, but not significantly (AUROC 0.711 vs 0.672); the proven gain is in its probabilities. It ranks NH Black survivors poorly (AUROC 0.48, n = 47), and the panel warns.
 - C3's lead time is shown on synthetic data; in the real fatigue study the wearable does not forecast the next day (AUC 0.482). Only sarcoma is clearly below the overall 28% recall (13%, CI 0–26%); Haitian Creole speakers (22%) and breast cancer (21%) are lower, but too few to be sure.
 - C4's real-data checks point the same way as the synthetic effects but do not prove them; the real walk effect is much smaller (−3.2 mg/dL, CI −6.9 to 0.5).
-- C5 agrees with AnnoMI experts 75.0% of the time vs 83.9% expert-to-expert agreement (91–93% where all experts agree).
+- C5 was never tuned on AnnoMI, an outside expert-labelled set: there it agrees 75.0% of the time vs 83.9% expert-to-expert (91–93% where all experts agree). On its own held-out calls it agrees with supervisors better than they agree with each other (r 0.79 vs 0.69).
 
 ## Keeping this README true
 
